@@ -7,22 +7,22 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
 
     <style>
-        /* ========================================
-           1. CORE SETTINGS (ПЕРЕМЕННЫЕ)
-           ========================================
-        */
         :root {
-            --bg-page: #F4F1EA;         /* Общий фон */
-            --bg-card: #E6E2D3;         /* Фон блоков */
-            --text-dark: #2C2C2C;       /* Текст */
-            --accent-sage: #5D634F;     /* Шалфей */
-            --accent-gold: #B5A48B;     /* Золото */
+            --bg-page: #F4F1EA;
+            --bg-card: #E6E2D3;
+            --text-dark: #2C2C2C;
+            --accent-sage: #5D634F;
+            --accent-gold: #B5A48B;
             --white: #FFFFFF;
             --shadow: 0 10px 30px rgba(0,0,0,0.05);
             --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            --fz-h1: clamp(2.2rem, 10vw, 3.8rem);
+            --fz-h2: clamp(1.8rem, 8vw, 2.4rem);
+            --fz-body: clamp(0.9rem, 2.5vw, 1.05rem);
         }
 
         * {
@@ -33,101 +33,88 @@
         }
 
         html, body {
-            height: 100%;
             background-color: var(--bg-page);
             color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
         .main-wrapper {
             width: 100%;
-            max-width: 500px; /* Ограничение для ПК */
+            max-width: 550px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
 
-        /* ========================================
-           2. ГЛАВНЫЙ ЭКРАН (HERO) - ФИКСИРОВАННЫЙ В 1 ЭКРАН
-           ========================================
-        */
+        /* ГЛАВНЫЙ ЭКРАН */
         .hero-screen {
-            height: 100dvh; /* Динамическая высота экрана */
+            min-height: 100svh;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Центрирование по вертикали */
+            justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px 0;
-            gap: 15px; /* Расстояние между элементами внутри */
+            padding: 40px 0;
         }
 
         .hero-top-label {
             font-size: 0.7rem;
-            letter-spacing: 5px;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
             color: var(--accent-sage);
+            margin-bottom: 20px;
             opacity: 0.8;
         }
 
         .hero-names {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.2rem, 8vw, 3rem);
-            line-height: 1.1;
-            font-weight: 300;
+            font-size: var(--fz-h1);
+            font-style: italic; /* Курсив для имен */
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            white-space: nowrap; /* Имена на одной строке */
         }
 
-        .hero-names span {
-            display: block;
-            font-size: 0.9rem;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 4px;
-            margin: 5px 0;
-            opacity: 0.5;
-        }
-
-        /* ИСПРАВЛЕННО: Адаптивная прямоугольная рамка */
         .photo-wrapper {
             width: 100%;
-            max-width: 280px; /* Ограничение, чтобы не вылетало */
-            max-height: 45dvh; /* Ограничение по высоте, чтобы влезло в экран */
-            padding: 12px; /* Отступ рамки от фото (эффект паспарту) */
+            max-width: 300px;
+            padding: 12px;
             border: 0.5px solid var(--accent-gold);
             background-color: var(--bg-card);
             position: relative;
             box-shadow: var(--shadow);
-            overflow: hidden; /* ГАРАНТИЯ: Фото не вылезет за пределы */
+            overflow: hidden;
+            margin-bottom: 30px;
         }
 
         .rect-image {
             width: 100%;
-            aspect-ratio: 3 / 4; /* Четкий прямоугольник */
-            background-image: url('главная.jpg'); /* ЗАМЕНИТЕ НА ВАШЕ ФОТО */
+            aspect-ratio: 3 / 4;
+            background-image: url('главная.jpg');
             background-size: cover;
             background-position: center;
-            border: 1px solid var(--white); /* Тонкая кайма внутри */
+            border: 1px solid var(--white);
         }
 
         .hero-date {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             letter-spacing: 2px;
-            margin-top: 5px;
         }
 
-        /* ========================================
-           3. ОБЩИЕ СТИЛИ БЛОКОВ (СЕКЦИЙ)
-           ========================================
-        */
+        /* ОБЩИЕ СЕКЦИИ */
         section {
             background-color: var(--bg-card);
             margin: 60px 0;
-            padding: 80px 25px;
+            padding: clamp(60px, 12vw, 90px) 25px;
             border-radius: 4px;
             box-shadow: var(--shadow);
             opacity: 0;
             transform: translateY(30px);
             transition: var(--transition);
+            text-align: center;
         }
 
         section.visible {
@@ -137,53 +124,67 @@
 
         h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
+            font-size: var(--fz-h2);
             font-weight: 400;
             text-transform: uppercase;
-            text-align: center;
             letter-spacing: 4px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .divider {
             width: 40px;
             height: 1px;
             background: var(--accent-gold);
-            margin: 20px auto;
+            margin: 25px auto;
         }
 
-        /* ========================================
-           4. БЛОК ПРИГЛАШЕНИЯ
-           ========================================
-        */
-        .invite-content {
-            text-align: center;
-            font-size: 0.95rem;
-            line-height: 1.8;
+        p {
+            font-size: var(--fz-body);
+            font-weight: 300;
         }
 
-        .invite-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.4rem;
-            margin-top: 20px;
-            color: var(--accent-sage);
+        /* ДРЕСС-КОД "МАЗКАМИ" */
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 35px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* ========================================
-           5. КАЛЕНДАРЬ
-           ========================================
-        */
+        .palette-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brush-stroke {
+            width: 100%;
+            height: 50px;
+            border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%; /* Эффект мазка */
+            transform: rotate(-3deg);
+            margin-bottom: 10px;
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
+        }
+
+        .palette-item:nth-child(even) .brush-stroke {
+            transform: rotate(2deg);
+            border-radius: 60% 40% 30% 70% / 50% 60% 40% 40%;
+        }
+
+        .swatch-name {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        /* КАЛЕНДАРЬ */
         .calendar-box {
             max-width: 280px;
             margin: 0 auto;
-        }
-
-        .calendar-header {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            text-align: center;
         }
 
         .calendar-grid {
@@ -191,6 +192,7 @@
             grid-template-columns: repeat(7, 1fr);
             gap: 8px;
             text-align: center;
+            margin-top: 20px;
         }
 
         .calendar-weekday {
@@ -198,7 +200,6 @@
             font-weight: bold;
             opacity: 0.4;
             text-transform: uppercase;
-            padding-bottom: 10px;
         }
 
         .calendar-day {
@@ -223,17 +224,13 @@
             z-index: -1;
         }
 
-        /* ========================================
-           6. ТАЙМИНГ
-           ========================================
-        */
+        /* ТАЙМИНГ */
         .timing-container {
             text-align: left;
             max-width: 320px;
             margin: 0 auto;
             border-left: 1px solid var(--accent-gold);
             padding-left: 30px;
-            position: relative;
         }
 
         .timing-item {
@@ -245,66 +242,32 @@
             content: '';
             position: absolute;
             left: -36px;
-            top: 5px;
-            width: 11px; height: 11px;
+            top: 6px;
+            width: 10px; height: 10px;
             background: var(--accent-sage);
             border-radius: 50%;
-            border: 3px solid var(--bg-card);
         }
 
         .timing-time {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--accent-sage);
-            display: block;
         }
 
         .timing-title {
-            font-weight: 500;
-            font-size: 0.85rem;
+            font-weight: 400;
+            font-size: 0.8rem;
             text-transform: uppercase;
             margin: 5px 0;
-        }
-
-        /* ========================================
-           7. ДРЕСС-КОД
-           ========================================
-        */
-        .palette-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .palette-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .swatch {
-            width: 100%;
-            height: 60px;
-            border-radius: 40px 10px 40px 10px;
-            margin-bottom: 10px;
-        }
-
-        .swatch-name {
-            font-size: 0.7rem;
-            text-transform: uppercase;
             letter-spacing: 1px;
-            opacity: 0.7;
         }
 
-        /* ========================================
-           8. АНКЕТА (RSVP)
-           ========================================
-        */
+        /* АНКЕТА */
         .rsvp-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            margin-top: 30px;
         }
 
         .field-group {
@@ -314,10 +277,10 @@
         }
 
         .field-group label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             margin-bottom: 8px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--accent-sage);
         }
 
@@ -325,11 +288,12 @@
             background: transparent;
             border: none;
             border-bottom: 1px solid var(--accent-gold);
-            padding: 10px 5px;
+            padding: 10px 0;
             font-family: inherit;
             font-size: 1rem;
             outline: none;
             color: var(--text-dark);
+            border-radius: 0;
         }
 
         .submit-button {
@@ -339,30 +303,9 @@
             padding: 20px;
             text-transform: uppercase;
             letter-spacing: 3px;
-            font-size: 0.8rem;
-            margin-top: 20px;
+            font-size: 0.75rem;
+            margin-top: 15px;
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .submit-button:hover {
-            background-color: #4a5040;
-        }
-
-        /* ========================================
-           9. ЛОКАЦИЯ
-           ========================================
-        */
-        .loc-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .loc-address {
-            font-size: 0.85rem;
-            opacity: 0.7;
-            margin-bottom: 30px;
         }
 
         .btn-map {
@@ -374,42 +317,31 @@
             text-transform: uppercase;
             font-size: 0.7rem;
             letter-spacing: 2px;
+            margin-top: 20px;
         }
 
         footer {
-            padding: 60px 0;
+            padding: 80px 0 60px;
             text-align: center;
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
+            letter-spacing: 5px;
             opacity: 0.4;
         }
 
-        /* ========================================
-           10. MEDIA QUERIES (АДАПТИВНОСТЬ)
-           ========================================
-        */
-        @media (max-height: 650px) {
-            .hero-names { font-size: 2rem; }
-            .photo-wrapper { max-height: 40dvh; }
-            .hero-screen { gap: 10px; }
+        @media (max-width: 400px) {
+            .hero-names { white-space: normal; line-height: 1.2; }
+            section { padding: 50px 20px; }
         }
-
-        @media (min-width: 768px) {
-            .main-wrapper { max-width: 550px; }
-            section { padding: 100px 50px; }
-        }
-
     </style>
 </head>
 <body>
 
     <div class="main-wrapper">
         
-        <div class="hero-screen">
+        <header class="hero-screen">
             <span class="hero-top-label">26.08.2026</span>
-            <h1 class="hero-names">
-                Мария <span>И</span> Иван
-            </h1>
+            <h1 class="hero-names">Мария и Иван</h1>
             
             <div class="photo-wrapper">
                 <div class="rect-image"></div>
@@ -417,28 +349,27 @@
 
             <div class="hero-date">Август | Среда</div>
             <div class="divider"></div>
-        </div>
+        </header>
 
         <section class="reveal">
             <h2>Приглашение</h2>
             <div class="invite-content">
-                Дорогие друзья и близкие! <br><br>
-                Мы рады пригласить вас на самое важное событие в нашей жизни. Мы решили объединить наши сердца и создать семью.
-                <div class="invite-quote">
-                    "Этот день станет началом нашей новой общей истории, и мы хотим провести его вместе с вами."
-                </div>
+                <p>Дорогие друзья и близкие! <br><br>
+                Мы рады пригласить вас на самое важное событие в нашей жизни. Мы решили объединить наши сердца и создать семью.</p>
+                <div class="divider"></div>
+                <p style="font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.4rem; color: var(--accent-sage);">
+                    "Этот день станет началом нашей новой общей истории."
+                </p>
             </div>
         </section>
 
         <section class="reveal">
             <h2>Дата события</h2>
             <div class="calendar-box">
-                <div class="calendar-header">Август 2026</div>
+                <p style="font-family: 'Cormorant Garamond'; margin-bottom: 15px;">Август 2026</p>
                 <div class="calendar-grid">
                     <div class="calendar-weekday">Пн</div><div class="calendar-weekday">Вт</div><div class="calendar-weekday">Ср</div><div class="calendar-weekday">Чт</div><div class="calendar-weekday">Пт</div><div class="calendar-weekday">Сб</div><div class="calendar-weekday">Вс</div>
-                    
-                    <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div>
-                    <div class="calendar-day">1</div><div class="calendar-day">2</div>
+                    <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day">1</div><div class="calendar-day">2</div>
                     <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
                     <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div>
                     <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
@@ -446,7 +377,7 @@
                     <div class="calendar-day">31</div>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 30px; font-size: 0.8rem; letter-spacing: 2px;">НАЧАЛО В 16:00</p>
+            <p style="margin-top: 35px; font-size: 0.75rem; letter-spacing: 3px; opacity: 0.7;">НАЧАЛО В 16:00</p>
         </section>
 
         <section class="reveal">
@@ -455,7 +386,7 @@
                 <div class="timing-item">
                     <span class="timing-time">16:00</span>
                     <p class="timing-title">Сбор гостей</p>
-                    <p style="font-size: 0.8rem; opacity: 0.6;">Welcome-зона и напитки</p>
+                    <p style="font-size: 0.8rem; opacity: 0.6;">Welcome-зона</p>
                 </div>
                 <div class="timing-item">
                     <span class="timing-time">17:00</span>
@@ -465,83 +396,61 @@
                 <div class="timing-item">
                     <span class="timing-time">18:30</span>
                     <p class="timing-title">Банкет</p>
-                    <p style="font-size: 0.8rem; opacity: 0.6;">Праздничный ужин и танцы</p>
+                    <p style="font-size: 0.8rem; opacity: 0.6;">Праздничный ужин</p>
                 </div>
-                <div class="timing-item">
-                    <span class="timing-time">22:00</span>
-                    <p class="timing-title">Торт</p>
-                    <p style="font-size: 0.8rem; opacity: 0.6;">Сладкий финал вечера</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="reveal">
-            <div style="text-align: center;">
-                <h2 style="margin-bottom: 20px;">Локация</h2>
-                <div class="loc-title">Ресторан "Лесной Холл"</div>
-                <p class="loc-address">Московская обл., Истринский р-н, пос. Светлый, д. 12</p>
-                <div class="divider"></div>
-                <a href="https://yandex.ru/maps" class="btn-map" target="_blank">Карта проезда</a>
             </div>
         </section>
 
         <section class="reveal">
             <h2>Дресс-код</h2>
-            <p style="font-size: 0.9rem; text-align: center;">Мы будем признательны, если вы выберете наряды в нашей цветовой палитре:</p>
+            <p>Мы будем признательны, если вы поддержите палитру нашего торжества:</p>
             <div class="palette-grid">
                 <div class="palette-item">
-                    <div class="swatch" style="background: #5D634F;"></div>
+                    <div class="brush-stroke" style="background: #5D634F;"></div>
                     <span class="swatch-name">Шалфей</span>
                 </div>
                 <div class="palette-item">
-                    <div class="swatch" style="background: #D6C7AE;"></div>
+                    <div class="brush-stroke" style="background: #D6C7AE;"></div>
                     <span class="swatch-name">Песок</span>
                 </div>
                 <div class="palette-item">
-                    <div class="swatch" style="background: #A67B5B;"></div>
+                    <div class="brush-stroke" style="background: #A67B5B;"></div>
                     <span class="swatch-name">Терракот</span>
                 </div>
                 <div class="palette-item">
-                    <div class="swatch" style="background: #8C7355;"></div>
+                    <div class="brush-stroke" style="background: #8C7355;"></div>
                     <span class="swatch-name">Орех</span>
                 </div>
             </div>
         </section>
 
+        <section class="reveal">
+            <h2>Локация</h2>
+            <p style="font-family: 'Cormorant Garamond'; font-size: 1.4rem;">Ресторан "Лесной Холл"</p>
+            <p style="font-size: 0.85rem; opacity: 0.7; margin: 10px 0 25px;">Московская обл., Истринский р-н, пос. Светлый, д. 12</p>
+            <a href="https://yandex.ru/maps" class="btn-map" target="_blank">Карта проезда</a>
+        </section>
+
         <section class="reveal" id="rsvp">
-            <h2>Подтверждение</h2>
-            <p style="text-align: center; font-size: 0.8rem; margin-bottom: 30px;">Пожалуйста, ответьте до 01.07.2026</p>
-            
+            <h2>Анкета гостя</h2>
+            <p style="font-size: 0.85rem; margin-bottom: 20px;">Пожалуйста, ответьте до 01.07.2026</p>
             <form class="rsvp-form" onsubmit="alert('Спасибо за ответ!'); return false;">
                 <div class="field-group">
                     <label>Ваше Имя</label>
                     <input type="text" placeholder="Имя и Фамилия" required>
                 </div>
-
                 <div class="field-group">
-                    <label>Ваше присутствие</label>
+                    <label>Присутствие</label>
                     <select>
                         <option>Я приду один / одна</option>
                         <option>Приду с парой</option>
                         <option>К сожалению, не смогу</option>
                     </select>
                 </div>
-
                 <div class="field-group">
-                    <label>Напитки</label>
-                    <select>
-                        <option>Вино (белое/красное)</option>
-                        <option>Крепкий алкоголь</option>
-                        <option>Игристое</option>
-                        <option>Безалкогольные</option>
-                    </select>
+                    <label>Пожелания</label>
+                    <textarea rows="1" placeholder="Аллергии или предпочтения"></textarea>
                 </div>
-
-                <div class="field-group">
-                    <label>Особые пожелания</label>
-                    <textarea rows="2" placeholder="Аллергия или предпочтения по еде"></textarea>
-                </div>
-
                 <button type="submit" class="submit-button">Отправить ответ</button>
             </form>
         </section>
@@ -551,21 +460,15 @@
     </div>
 
     <script>
-        // 1. Появление блоков при скролле (Scroll Reveal)
-        const revealOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, revealOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // 2. ИСПРАВЛЕННО: Код параллакса (движения фото) полностью удален.
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
